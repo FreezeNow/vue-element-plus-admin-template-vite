@@ -1,13 +1,13 @@
 module.exports = {
   root: true,
   parserOptions: {
-    parser: 'babel-eslint',
     sourceType: 'module',
   },
   env: {
     browser: true,
     node: true,
     es6: true,
+    es2022: true, 
   },
   extends: ['plugin:vue/vue3-essential', 'eslint:recommended', 'prettier'],
 
@@ -254,7 +254,7 @@ module.exports = {
     // 'yield-star-spacing': [2, 'both'],
     yoda: [2, 'never'],
     'prefer-const': 2,
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'no-debugger': import.meta.env.NODE_ENV === 'production' ? 2 : 0,
     // 'object-curly-spacing': [
     //   2,
     //   'always',

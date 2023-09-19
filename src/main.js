@@ -25,7 +25,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
  * Currently MockJs will be used in the production environment,
  * please remove it before going online ! ! !
  */
-if (process.env.NODE_ENV === 'production') {
+if (import.meta.env.NODE_ENV === 'production') {
   const { mockXHR } = require('../mock')
   mockXHR()
 }
@@ -34,7 +34,7 @@ window.$vueApp = Vue.createApp(App)
 // set ElementPlus lang to ZH
 window.$vueApp.use(ElementPlus, { locale:zhCn })
 // register globally
-window.$vueApp.component('svg-icon', SvgIcon);
+window.$vueApp.component('SvgIcon', SvgIcon);
 
 window.$vueApp.config.globalProperties.routerAppend = (path, pathToAppend) => {
   return path + (path.endsWith('/') ? '' : '/') + pathToAppend

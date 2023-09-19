@@ -55,10 +55,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~@/styles/mixin.scss';
-@import '~@/styles/variables.module.scss';
+// @import '/src/styles/mixin.scss';
+// @import '/src/styles/variables.module.scss';
 .app-wrapper {
-  @include clearfix;
+  // @include clearfix;
   position: relative;
   height: 100%;
   width: 100%;
@@ -81,7 +81,7 @@ export default {
   top: 0;
   right: 0;
   z-index: 9;
-  width: calc(100% - #{$sideBarWidth});
+  // width: calc(100% - #{$sideBarWidth});
   transition: width 0.28s;
 }
 .hideSidebar .fixed-header {

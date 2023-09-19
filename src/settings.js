@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   title: 'Vue Admin Template',
 
   /**
@@ -11,5 +11,5 @@ module.exports = {
    * @type {boolean} true | false
    * @description Whether show the logo in sidebar
    */
-  sidebarLogo: false
-}
+  sidebarLogo: false,
+};
