@@ -1,27 +1,18 @@
+<template>
+  <el-icon v-if="icon">
+    <component v-if="!!elIcon" :is="elIcon" />
+    <svg-icon v-else :icon-class="icon" />
+  </el-icon>
+</template>
 <script lang="jsx">
-export default function render(_props, _context) {
-  const context = {
-    ..._context,
-    props: _props,
-    data: _context.attr,
-    children: _context.slots,
-  };
-  const { icon, title } = context.props;
-  const vnodes = [];
-
-  if (icon) {
-    if (icon.includes('el-icon')) {
-      vnodes.push(<i class={[icon, 'sub-el-icon']} />);
-    } else {
-      vnodes.push(<svg-icon icon-class={icon} />);
-    }
-  }
-
-  if (title) {
-    vnodes.push(<span slot="title">{title}</span>);
-  }
-  return vnodes;
-}
+export default {
+  props: ['icon'],
+  computed: {
+    elIcon() {
+      return this.icon.includes('el-icon') ? this.icon.replace('el-icon-', '') : false;
+    },
+  },
+};
 </script>
 
 <style scoped>

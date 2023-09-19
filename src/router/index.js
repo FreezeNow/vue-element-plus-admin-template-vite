@@ -59,7 +59,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/example/table',
     name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
+    meta: { title: 'Example', icon: 'el-icon-HelpFilled' },
     children: [
       {
         path: 'table',
