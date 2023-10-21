@@ -2,7 +2,7 @@
 
 > 这是一个极简的 vue admin 管理后台。它只包含了 Element Plus & axios & iconfont & permission control & lint，这些搭建后台必要的东西。
 
-[线上地址](https://freezenow.github.io/vue-element-plus-admin-template/)
+[线上地址](https://freezenow.github.io/vue-element-plus-admin-template-vite)
 
 该项目以[vue-admin-template](https://github.com/PanJiaChen/vue-admin-template/)为基础，使用 `Vite 4 + Vue 3 + Element Plus` 进行构建。使用`prettierrc`为格式化工具，并注释了原有的部分`eslint`规则，如有需要，请自行修改。
 
