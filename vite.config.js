@@ -29,9 +29,14 @@ export default defineConfig({
     vueJsx(),
     viteMockServe({
       mockPath: 'mock',
-      // enable: false,
+      enable: true,
+      prodEnabled: true,
       logger: true,
       watchFiles: true,
+      injectCode: `
+          import { setupProdMockServer } from './mockProdServer';
+          setupProdMockServer();
+        `,
     }),
     // ViteRequireContext(),
     // viteCommonjs(),
@@ -59,7 +64,5 @@ export default defineConfig({
   build: {
     outDir: 'dist',
   },
-  define: {
-    // VITE_APP_BASE_API: import.meta.env.VITE_APP_BASE_API,
-  },
+  define: {},
 });
