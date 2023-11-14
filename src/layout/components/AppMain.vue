@@ -1,8 +1,8 @@
 <template>
   <section class="app-main">
-    <router-view v-slot="{ Component }" :key="key">
+    <router-view v-slot="{ Component }">
       <transition name="fade-transform" mode="out-in">
-        <component :is="Component"></component>
+        <component :is="Component" :key="key"></component>
       </transition>
     </router-view>
   </section>
