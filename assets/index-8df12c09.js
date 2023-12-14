@@ -1,0 +1,1 @@
+import{_ as s,m as a,u as t,o,c as n,b as c,t as r}from"./index-6893c361.js";const _={name:"Dashboard",computed:{...a(t),name(){return this.userStore.name}}},d={class:"dashboard-container"},i={class:"dashboard-text"};function p(m,u,l,h,x,e){return o(),n("div",d,[c("div",i,"name: "+r(e.name),1)])}const f=s(_,[["render",p],["__scopeId","data-v-c461364b"]]);export{f as default};
