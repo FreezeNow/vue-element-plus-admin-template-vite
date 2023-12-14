@@ -1,10 +1,6 @@
 <template>
   <div :class="classObj" class="app-wrapper">
-    <div
-      v-if="device === 'mobile' && sidebar.opened"
-      class="drawer-bg"
-      @click="handleClickOutside"
-    />
+    <div v-if="device === 'mobile' && sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
     <sidebar class="sidebar-container" />
     <div class="main-container">
       <div :class="{ 'fixed-header': fixedHeader }">
@@ -16,42 +12,46 @@
 </template>
 
 <script>
-import { Navbar, Sidebar, AppMain } from './components'
-import ResizeMixin from './mixin/ResizeHandler'
+import { Navbar, Sidebar, AppMain } from './components';
+import ResizeMixin from './mixin/ResizeHandler';
+import { mapStores } from 'pinia';
+import { useSettingsStore } from '@/stores/settings';
+import { useAppStore } from '@/stores/app';
 
 export default {
   name: 'Layout',
   components: {
     Navbar,
     Sidebar,
-    AppMain
+    AppMain,
   },
   mixins: [ResizeMixin],
   computed: {
+    ...mapStores(useSettingsStore, useAppStore),
     sidebar() {
-      return this.$store.state.app.sidebar
+      return this.appStore.sidebar;
     },
     device() {
-      return this.$store.state.app.device
+      return this.appStore.device;
     },
     fixedHeader() {
-      return this.$store.state.settings.fixedHeader
+      return this.settingsStore.fixedHeader;
     },
     classObj() {
       return {
         hideSidebar: !this.sidebar.opened,
         openSidebar: this.sidebar.opened,
         withoutAnimation: this.sidebar.withoutAnimation,
-        mobile: this.device === 'mobile'
-      }
-    }
+        mobile: this.device === 'mobile',
+      };
+    },
   },
   methods: {
     handleClickOutside() {
-      this.$store.dispatch('app/closeSideBar', { withoutAnimation: false })
-    }
-  }
-}
+      this.appStore.closeSideBar({ withoutAnimation: false });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

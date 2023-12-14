@@ -16,16 +16,16 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "element-plus": "^2.2.5",
+    "element-plus": "^2.4.3",
     "js-cookie": "2.2.0",
     "normalize.css": "7.0.0",
     "nprogress": "0.2.0",
     "path-to-regexp": "2.4.0",
+    "pinia": "^2.1.7",
     "tiny-emitter": "^2.1.0",
     "vite-plugin-svg-icons": "^2.0.1",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.8",
-    "vuex": "^4.0.2"
+    "vue": "^3.3.11",
+    "vue-router": "^4.0.8"
   },
   "devDependencies": {
     "@originjs/vite-plugin-commonjs": "^1.0.1",

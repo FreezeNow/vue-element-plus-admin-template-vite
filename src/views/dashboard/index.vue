@@ -5,14 +5,18 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapStores } from 'pinia';
+import { useUserStore } from '@/stores/user';
 
 export default {
   name: 'Dashboard',
   computed: {
-    ...mapGetters(['name'])
-  }
-}
+    ...mapStores(useUserStore),
+    name() {
+      return this.userStore.name;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,10 +1,6 @@
 <template>
   <div class="navbar">
-    <hamburger
-      :is-active="sidebar.opened"
-      class="hamburger-container"
-      @toggleClick="toggleSideBar"
-    />
+    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
 
     <breadcrumb class="breadcrumb-container" />
 
@@ -19,16 +15,10 @@
             <router-link to="/">
               <el-dropdown-item> Home </el-dropdown-item>
             </router-link>
-            <a
-              target="_blank"
-              href="https://github.com/PanJiaChen/vue-admin-template/"
-            >
+            <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
               <el-dropdown-item>Github</el-dropdown-item>
             </a>
-            <a
-              target="_blank"
-              href="https://panjiachen.github.io/vue-element-admin-site/#/"
-            >
+            <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
               <el-dropdown-item>Docs</el-dropdown-item>
             </a>
             <el-dropdown-item divided @click="logout">
@@ -42,28 +32,36 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import Breadcrumb from '@/components/Breadcrumb'
-import Hamburger from '@/components/Hamburger'
+import Breadcrumb from '@/components/Breadcrumb';
+import Hamburger from '@/components/Hamburger';
+import { mapStores } from 'pinia';
+import { useUserStore } from '@/stores/user';
+import { useAppStore } from '@/stores/app';
 
 export default {
   components: {
     Breadcrumb,
-    Hamburger
+    Hamburger,
   },
   computed: {
-    ...mapGetters(['sidebar', 'avatar'])
+    ...mapStores(useUserStore, useAppStore),
+    sidebar() {
+      return this.appStore.sidebar;
+    },
+    avatar() {
+      return this.userStore.avatar;
+    },
   },
   methods: {
     toggleSideBar() {
-      this.$store.dispatch('app/toggleSideBar')
+      this.appStore.toggleSideBar();
     },
     async logout() {
-      await this.$store.dispatch('user/logout')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
-    }
-  }
-}
+      await this.userStore.logout();
+      this.$router.push(`/login?redirect=${this.$route.fullPath}`);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,45 +1,49 @@
-import store from '@/store'
+import { mapStores } from 'pinia';
+import { useAppStore } from '@/stores/app';
 
-const { body } = document
-const WIDTH = 992 // refer to Bootstrap's responsive design
+const { body } = document;
+const WIDTH = 992; // refer to Bootstrap's responsive design
 
 export default {
+  computed: {
+    ...mapStores(useAppStore),
+  },
   watch: {
     $route(route) {
       if (this.device === 'mobile' && this.sidebar.opened) {
-        store.dispatch('app/closeSideBar', { withoutAnimation: false })
+        this.appStore.closeSideBar({ withoutAnimation: false });
       }
-    }
+    },
   },
   beforeMount() {
-    window.addEventListener('resize', this.$_resizeHandler)
+    window.addEventListener('resize', this.$_resizeHandler);
   },
   beforeUnmount() {
-    window.removeEventListener('resize', this.$_resizeHandler)
+    window.removeEventListener('resize', this.$_resizeHandler);
   },
   mounted() {
-    const isMobile = this.$_isMobile()
+    const isMobile = this.$_isMobile();
     if (isMobile) {
-      store.dispatch('app/toggleDevice', 'mobile')
-      store.dispatch('app/closeSideBar', { withoutAnimation: true })
+      this.appStore.toggleDevice('mobile');
+      this.appStore.closeSideBar({ withoutAnimation: true });
     }
   },
   methods: {
     // use $_ for mixins properties
     // https://vuejs.org/v2/style-guide/index.html#Private-property-names-essential
     $_isMobile() {
-      const rect = body.getBoundingClientRect()
-      return rect.width - 1 < WIDTH
+      const rect = body.getBoundingClientRect();
+      return rect.width - 1 < WIDTH;
     },
     $_resizeHandler() {
       if (!document.hidden) {
-        const isMobile = this.$_isMobile()
-        store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop')
+        const isMobile = this.$_isMobile();
+        this.appStore.toggleDevice(isMobile ? 'mobile' : 'desktop');
 
         if (isMobile) {
-          store.dispatch('app/closeSideBar', { withoutAnimation: true })
+          this.appStore.closeSideBar({ withoutAnimation: true });
         }
       }
-    }
-  }
-}
+    },
+  },
+};
